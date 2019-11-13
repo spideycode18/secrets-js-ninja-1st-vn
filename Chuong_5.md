@@ -23,6 +23,7 @@ Khái niệm này có lẽ được giải thích tốt nhất thông qua mã, v
   outerFunction();     // <b>(3)</b> thực thi hàm
 </script>
 </pre>
+
 Trong đoạn mã ví dụ, chúng ta khai báo một biến **(1)** và một hàm **(2)** trong cùng một *scope* - trong trường họp này là *global scope*. Sau đó chúng ta thực thi hàm **(3)**.
 
 Có thể thấy ở hình 5.1, hàm có thể truy cập vào biến `outerValue`. Bạn có thể đã viết mã như thế hàng trăm lần mà không nhận ra rằng bạn vừa tạo một *closure*.
