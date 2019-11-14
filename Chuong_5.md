@@ -82,7 +82,7 @@ Hãy phát triển ví dụ đó với một vài bổ sung để quan sát thê
       assert(outerValue,"Inner can see the ninja.");
       assert(innerValue,"Inner can see the samurai.");
       <b>assert(paramValue,"Inner can see the wakizashi.");</b>     // <b>(2)</b> Kiểm thử nếu chúng ta có thể thấy tham số
-      <b>assert(tooLate,"Inner can see the ronin.");</b>     // Kiểm thử nếu <i>closure</i> bao gồm cả biến được khai báo sau                                                                        // khi hàm được hai báo.
+      <b>assert(tooLate,"Inner can see the ronin.");</b>     // Kiểm thử nếu <i>closure</i> bao gồm cả biến được khai báo sau khi hàm được hai báo.
     }
     later = innerFunction;
   }
@@ -92,3 +92,20 @@ Hãy phát triển ví dụ đó với một vài bổ sung để quan sát thê
   later('<b>wakizashi</b>');     // <b>(5)</b> Gọi <code>innerFunction</code> để chạy các kiểm thử bên trong nó.
 </script>
 </pre>
+
+Không cần đợi thêm, chuyện sẽ như thế này. So với đoạn mã cũ, chúng ta đã tạo thêm một số bổ sung thú vị. Chúng ta thêm tham số **(1)** vào `innerFunction` và chúng ta truyền một giá trị vào hàm khi nó được gọi thông qua `later` **(5)**. Chúng ta cũng thêm một biến được khai báo sau khi `outerFuntion` được khai báo **(4)**.
+
+Khi các kiểm thử bên trong **(2)** và bên ngoài **(3)** `innerFunction` được thực thi, chúng ta có thể thấy kết quả như hình 5.4.
+
+Điều đó thể hiện thêm ba khái niệm thú vị về *closure*:
+
+* Tham số của hàm được thêm vào *closure* của hàm đó. (Điều đó có vẻ rõ ràng nhưng chúng ta khẳng định lại cho chắc chắn).
+* Tất cả các biến bên ngoài *scope*, kể cả chúng được khai báo sau khi hàm được khai báo, cũng được thêm vào.
+* Cùng một *scope*, các biến chưa được định nghĩa thì không thể truy cập đến giá trị được.
+
+Điểm thứ hai và ba giải thích tạo sao *closure* bên trong có thể truy cập được biến `tooLate` nhưng *closure* bên ngoài thì không.
+
+Điều quan trọng cần chú ý là toàn bộ cấu trúc này không được thể hiện ở bất kì đâu (không có bất kì đối tượng *closure* nào nắm giữ toàn bộ thông tin đó để bạn kiểm tra), có một chi phí trực tiếp để lưu trữ và tham chiếu thông tin theo cách này. Điều quan trọng cần nhớ là mỗi hàm chúng truy cập thông tin qua *closure* có một "quả bóng và dây chuyền" đính kèm theo chúng để mang theo thông tin này. Do vậy, trong khi *closure* vô cùng hữu dụng nên chúng không vận hành miễn phí. Tất cả các thông tin đó cần được lưu trữ trong bộ nhớ đến khi nó thực sự được thể hiện rõ ràng với công cụ Javascript rằng nó không còn cần thiết (và an toàn để quăng vào sọt rác) hoặc cho đến khi trang được tải xuống.
+
+
+
