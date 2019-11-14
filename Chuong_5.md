@@ -59,11 +59,15 @@ Vì thế chúng ta đã kì vọng `assert` sẽ thất bại, giống như `in
 
 Nhưng khi chúng ta chạy kiểm thử, chúng ta thấy được hình 5.2.
 
+**Hình 5.2 Mặc dù cố gắng ẩn mình bên trong hàm, các samurai vẫn bị phát hiện**
+
 Làm sao có thể như thế được? Phép màu nào cho phép biến `innerValue` còn tồn tại khi chúng ta thực thi `innerFunction`, sau khi *scope* nơi mà nó được tạo đã biến mất. Câu trả lời, tất nhiên, là `closure`.
 
 Khi chúng ta khai báo `innerFunction()` bên trong `outerFunction` thì không chỉ hàm được khai báo mà một *closure* cũng được tạo, nó bao gồm không chỉ bao gồm khai báo hàm mà còn tất cả các biến trong `scope` tại thời điểm khai báo.
 
 Khi `innerFunction()` thực thi, kể cả khi nó được thực thi sau khi `scope` nơi nó được khai báo biến mất, nó vẫn có thể truy cập vào `scope` gốc, nơi nó được khai báo thông qua `closure`, như hình 5.3.
+
+**Hình 5.3 Giống như một bong bóng bảo vệ, *closure* cho `innerFunction()` giữ lại biến bên trong *scope* của hàm khỏi bị thu dọn trong khi hàm còn tồn tại**
 
 Đó là tất cả về `closure`. Chúng tạo ra một 'bong bóng an toàn' cho hàm và biến trong `scope` tại thời điểm khai báo của hàm, do đó hàm sẽ có tất cả những thứ cần thiết đểm thực thi.
 
@@ -96,6 +100,8 @@ Hãy phát triển ví dụ đó với một vài bổ sung để quan sát thê
 Không cần đợi thêm, chuyện sẽ như thế này. So với đoạn mã cũ, chúng ta đã tạo thêm một số bổ sung thú vị. Chúng ta thêm tham số **(1)** vào `innerFunction` và chúng ta truyền một giá trị vào hàm khi nó được gọi thông qua `later` **(5)**. Chúng ta cũng thêm một biến được khai báo sau khi `outerFuntion` được khai báo **(4)**.
 
 Khi các kiểm thử bên trong **(2)** và bên ngoài **(3)** `innerFunction` được thực thi, chúng ta có thể thấy kết quả như hình 5.4.
+
+**Hình 5.4 Hóa ra bên trong có thể nhìn xa hơn bên ngoài**
 
 Điều đó thể hiện thêm ba khái niệm thú vị về *closure*:
 
