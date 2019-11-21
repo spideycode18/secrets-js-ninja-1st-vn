@@ -28,6 +28,10 @@ Trong đoạn mã ví dụ, chúng ta khai báo một biến **(1)** và một h
 
 Có thể thấy ở hình 5.1, hàm có thể truy cập vào biến `outerValue`. Bạn có thể đã viết mã như thế hàng trăm lần mà không nhận ra rằng bạn vừa tạo một *closure*.
 
+![](images/figure_5.1.jpg)
+
+**Hình 5.1 Hàm của chúng ta có thể tìm thấy được ninja, người đang ẩn thân khỏi tầm nhìn.**
+
 Không ấn tượng ư? Tôi đoán không ngạc nhiên lắm. Bởi vì cả `outerValue` và `outerFunction` đều được khai báo ở *global scope*, *scope* (mà thực tế là *closure*) không bao giờ biến mất (miến sao trang web được tải xong). Không ngạc nhiên khi hàm có thể truy câp vào biến bởi gì nó vẫn còn trong *scope* và khả thi. Kể cả *closure* tồn tại, lợi ích của nó vẫn không rõ ràng.
 
 Hãy làm nó thú vị hơn một chút với đoạn mã tiếp theo:
@@ -59,6 +63,8 @@ Vì thế chúng ta đã kì vọng `assert` sẽ thất bại, giống như `in
 
 Nhưng khi chúng ta chạy kiểm thử, chúng ta thấy được hình 5.2.
 
+![](images/figure_5.2.jpg)
+
 **Hình 5.2 Mặc dù cố gắng ẩn mình bên trong hàm, các samurai vẫn bị phát hiện**
 
 Làm sao có thể như thế được? Phép màu nào cho phép biến `innerValue` còn tồn tại khi chúng ta thực thi `innerFunction`, sau khi *scope* nơi mà nó được tạo đã biến mất. Câu trả lời, tất nhiên, là `closure`.
@@ -66,6 +72,8 @@ Làm sao có thể như thế được? Phép màu nào cho phép biến `innerV
 Khi chúng ta khai báo `innerFunction()` bên trong `outerFunction` thì không chỉ hàm được khai báo mà một *closure* cũng được tạo, nó bao gồm không chỉ bao gồm khai báo hàm mà còn tất cả các biến trong `scope` tại thời điểm khai báo.
 
 Khi `innerFunction()` thực thi, kể cả khi nó được thực thi sau khi `scope` nơi nó được khai báo biến mất, nó vẫn có thể truy cập vào `scope` gốc, nơi nó được khai báo thông qua `closure`, như hình 5.3.
+
+![](images/figure_5.3.jpg)
 
 **Hình 5.3 Giống như một bong bóng bảo vệ, *closure* cho `innerFunction()` giữ lại biến bên trong *scope* của hàm khỏi bị thu dọn trong khi hàm còn tồn tại**
 
@@ -100,6 +108,8 @@ Hãy phát triển ví dụ đó với một vài bổ sung để quan sát thê
 Không cần đợi thêm, chuyện sẽ như thế này. So với đoạn mã cũ, chúng ta đã tạo thêm một số bổ sung thú vị. Chúng ta thêm tham số **(1)** vào `innerFunction` và chúng ta truyền một giá trị vào hàm khi nó được gọi thông qua `later` **(5)**. Chúng ta cũng thêm một biến được khai báo sau khi `outerFuntion` được khai báo **(4)**.
 
 Khi các kiểm thử bên trong **(2)** và bên ngoài **(3)** `innerFunction` được thực thi, chúng ta có thể thấy kết quả như hình 5.4.
+
+![](images/figure_5.4.jpg)
 
 **Hình 5.4 Hóa ra bên trong có thể nhìn xa hơn bên ngoài**
 
